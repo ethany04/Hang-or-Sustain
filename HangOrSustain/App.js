@@ -7,10 +7,11 @@ import {
   ImageBackground,
   Button,
   SafeAreaView,
+  Text
 } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Video from 'react-native-video';
+import { Video } from 'expo-av';
 
 const Stack = createNativeStackNavigator();
 
@@ -20,7 +21,7 @@ const WelcomeScreen = ({ navigation }) => {
           style={styles.startBackground}
           source={require("./assets/start.png")}
       >
-        <TouchableWithoutFeedback onPress={() => navigation.navigate('Win')}>
+        <TouchableWithoutFeedback onPress={() => navigation.navigate('Lose')}>
           <Image 
             style={styles.playButton}
             source={require('./assets/PLAY.png')}/>
@@ -71,15 +72,19 @@ const WinningScreen = ({ navigation }) => {
   );
 }
 
-const RickRoll = () => {
+function RickRoll() {
+  const video = React.useRef(null);
+  const [status, setStatus] = React.useState({});
   return (
     <SafeAreaView style={styles.rickBackground}>
         <Video
+          ref={video}
+          style={styles.video}
           source={require('./assets/rick.mp4')}
-          style={styles.RickRoll}
-          hideShutterView={false}
-          paused={false}
-          repeat={true}
+          useNativeControls
+          resizeMode="contain"
+          isLooping
+          onPlaybackStatusUpdate={setStatus}
         />
     </SafeAreaView>
   )
@@ -122,12 +127,14 @@ const styles = StyleSheet.create({
   consolationButton: {
     top: 200,
   },
-  RickRoll: {
+  rickBackground: {
+    flex: 1,
+    backgroundColor: 'black',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  video: {
     flex: 1,
     alignSelf: "stretch",
-  },
-  rickBackground: {
-    backgroundColor: 'black',
-    justifyContent: 'center',
   },
 });

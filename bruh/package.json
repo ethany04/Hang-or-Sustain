@@ -1,5 +1,5 @@
 {
-  "name": "hangman2",
+  "name": "sustainability",
   "version": "1.0.0",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
@@ -11,12 +11,12 @@
   "dependencies": {
     "@react-navigation/native": "^6.1.6",
     "@react-navigation/native-stack": "^6.9.12",
-    "expo": "^1.0.0",
-    "expo-av": "~13.2.1",
+    "expo": "^48.0.5",
     "expo-status-bar": "~1.4.4",
     "react": "18.2.0",
     "react-native": "0.71.3",
-    "react-native-video": "^5.2.1"
+    "react-native-video": "^5.2.1",
+    "expo-av": "~13.2.1"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"
